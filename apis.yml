@@ -1,0 +1,203 @@
+aid: setlistfm
+url: https://raw.githubusercontent.com/api-evangelist/setlistfm/refs/heads/main/apis.yml
+name: setlist.fm
+kind: company
+description: setlist.fm is the world's largest crowd-sourced concert setlist database
+  and community, letting fans document, share, and explore which songs artists play
+  at live shows. The setlist.fm REST API gives read-only access to that data - artists
+  (keyed by MusicBrainz MBID), setlists and their revision history, venues, cities,
+  and countries, plus full-text search across each - so developers can build music
+  apps, tour trackers, and research tools. setlist.fm is owned by Live Nation
+  Entertainment through its Ticketmaster subsidiary. The API is free for
+  non-commercial use with an API key; commercial use requires contacting setlist.fm.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Music
+- Concerts
+- Setlists
+- Live Music
+- Database
+- Crowd-Sourced
+- Entertainment
+created: '2026-07-03'
+modified: '2026-07-03'
+specificationVersion: '0.19'
+apis:
+- aid: setlistfm:setlistfm-artists-api
+  name: setlist.fm Artists API
+  tags:
+  - Artists
+  - MusicBrainz
+  - Setlists
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.setlist.fm/docs/1.0/index.html
+  baseURL: https://api.setlist.fm/rest/1.0
+  properties:
+  - url: https://api.setlist.fm/docs/1.0/index.html
+    type: Documentation
+  - url: https://api.setlist.fm/docs/1.0/resource__1.0_artist__mbid_.html
+    type: APIReference
+  - url: openapi/setlistfm-openapi.yml
+    type: OpenAPI
+  - url: collections/setlistfm.postman_collection.json
+    type: PostmanCollection
+  - url: collections/setlistfm.opencollection.json
+    type: OpenCollection
+  description: Look up an artist by their MusicBrainz identifier (MBID) and page
+    through every setlist attributed to that artist. Artists are the primary entry
+    point for exploring a performer's live performance history on setlist.fm.
+- aid: setlistfm:setlistfm-setlists-api
+  name: setlist.fm Setlists API
+  tags:
+  - Setlists
+  - Versions
+  - Concerts
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.setlist.fm/docs/1.0/index.html
+  baseURL: https://api.setlist.fm/rest/1.0
+  properties:
+  - url: https://api.setlist.fm/docs/1.0/index.html
+    type: Documentation
+  - url: https://api.setlist.fm/docs/1.0/resource__1.0_setlist__setlistId_.html
+    type: APIReference
+  - url: openapi/setlistfm-openapi.yml
+    type: OpenAPI
+  - url: collections/setlistfm.postman_collection.json
+    type: PostmanCollection
+  - url: collections/setlistfm.opencollection.json
+    type: OpenCollection
+  description: Retrieve a single concert setlist by its ID - the ordered songs, sets,
+    encores, tour, artist, and venue - or fetch a specific historical revision of a
+    setlist by its version ID, since setlists are crowd-edited over time.
+- aid: setlistfm:setlistfm-venues-api
+  name: setlist.fm Venues API
+  tags:
+  - Venues
+  - Locations
+  - Setlists
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.setlist.fm/docs/1.0/index.html
+  baseURL: https://api.setlist.fm/rest/1.0
+  properties:
+  - url: https://api.setlist.fm/docs/1.0/index.html
+    type: Documentation
+  - url: https://api.setlist.fm/docs/1.0/resource__1.0_venue__venueId_.html
+    type: APIReference
+  - url: openapi/setlistfm-openapi.yml
+    type: OpenAPI
+  - url: collections/setlistfm.postman_collection.json
+    type: PostmanCollection
+  - url: collections/setlistfm.opencollection.json
+    type: OpenCollection
+  description: Look up a venue by its setlist.fm venue ID and page through all
+    setlists performed at that venue. Venues carry the city, and through the city
+    the state, country, and geo-coordinates where each show took place.
+- aid: setlistfm:setlistfm-cities-api
+  name: setlist.fm Cities API
+  tags:
+  - Cities
+  - Geo
+  - Geonames
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.setlist.fm/docs/1.0/index.html
+  baseURL: https://api.setlist.fm/rest/1.0
+  properties:
+  - url: https://api.setlist.fm/docs/1.0/index.html
+    type: Documentation
+  - url: https://api.setlist.fm/docs/1.0/resource__1.0_city__geoId_.html
+    type: APIReference
+  - url: openapi/setlistfm-openapi.yml
+    type: OpenAPI
+  - url: collections/setlistfm.postman_collection.json
+    type: PostmanCollection
+  - url: collections/setlistfm.opencollection.json
+    type: OpenCollection
+  description: Resolve a city by its GeoNames geoId to get its name, state, country,
+    and latitude/longitude. Most of setlist.fm's city data originates from
+    Geonames.org and is the geographic backbone behind venues and setlists.
+- aid: setlistfm:setlistfm-countries-api
+  name: setlist.fm Countries API
+  tags:
+  - Countries
+  - Reference Data
+  - Geo
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.setlist.fm/docs/1.0/index.html
+  baseURL: https://api.setlist.fm/rest/1.0
+  properties:
+  - url: https://api.setlist.fm/docs/1.0/index.html
+    type: Documentation
+  - url: https://api.setlist.fm/docs/1.0/resource__1.0_search_countries.html
+    type: APIReference
+  - url: openapi/setlistfm-openapi.yml
+    type: OpenAPI
+  - url: collections/setlistfm.postman_collection.json
+    type: PostmanCollection
+  - url: collections/setlistfm.opencollection.json
+    type: OpenCollection
+  description: Return the complete list of countries setlist.fm knows about, each
+    with its ISO country code and localized name. This is the reference set used to
+    constrain and interpret geographic filters elsewhere in the API.
+- aid: setlistfm:setlistfm-search-api
+  name: setlist.fm Search API
+  tags:
+  - Search
+  - Discovery
+  - Full Text
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.setlist.fm/docs/1.0/index.html
+  baseURL: https://api.setlist.fm/rest/1.0
+  properties:
+  - url: https://api.setlist.fm/docs/1.0/index.html
+    type: Documentation
+  - url: https://api.setlist.fm/docs/1.0/resource__1.0_search_setlists.html
+    type: APIReference
+  - url: openapi/setlistfm-openapi.yml
+    type: OpenAPI
+  - url: collections/setlistfm.postman_collection.json
+    type: PostmanCollection
+  - url: collections/setlistfm.opencollection.json
+    type: OpenCollection
+  description: Full-text and faceted search across artists, venues, cities, and
+    setlists. Filter setlists by artist, venue, city, country, tour, date, and song,
+    with paginated results - the main discovery surface for finding the exact
+    concert or performer you are after.
+- aid: setlistfm:setlistfm-user-api
+  name: setlist.fm User API
+  tags:
+  - Users
+  - Community
+  - Attended
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://api.setlist.fm/docs/1.0/index.html
+  baseURL: https://api.setlist.fm/rest/1.0
+  properties:
+  - url: https://api.setlist.fm/docs/1.0/index.html
+    type: Documentation
+  - url: https://api.setlist.fm/docs/1.0/resource__1.0_user__userId_.html
+    type: APIReference
+  - url: openapi/setlistfm-openapi.yml
+    type: OpenAPI
+  - url: collections/setlistfm.postman_collection.json
+    type: PostmanCollection
+  - url: collections/setlistfm.opencollection.json
+    type: OpenCollection
+  description: Look up a community member by user ID and retrieve the concerts they
+    have marked as attended or the setlists they have edited. Surfaces the
+    crowd-sourced contributions that keep the setlist.fm database current.
+common:
+- type: LinkedIn
+  url: https://www.linkedin.com/company/setlist-fm/
+- type: Website
+  url: https://www.setlist.fm/
+- type: Documentation
+  url: https://api.setlist.fm/docs/1.0/index.html
+- type: Plans
+  url: plans/setlistfm-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/setlistfm-rate-limits.yml
+- type: FinOps
+  url: finops/setlistfm-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

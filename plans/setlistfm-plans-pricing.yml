@@ -1,0 +1,101 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: setlist.fm
+providerId: setlistfm
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Music
+- Concerts
+- Setlists
+- Non-Commercial
+- Plans
+description: >-
+  The setlist.fm REST API has a single access model: it is free of charge but,
+  per the API terms of service, licensed for non-commercial use only. Access
+  requires a free API key requested from the setlist.fm API settings page while
+  signed in to a setlist.fm account. Each key is issued with a rate limit
+  (commonly 2 requests/second and 1,440 requests/day for standard keys), and
+  higher limits can be requested manually. Commercial use is not permitted
+  under the free key; organizations wanting to use the data commercially must
+  contact setlist.fm to arrange licensing. setlist.fm is owned by Live Nation
+  Entertainment through Ticketmaster.
+notes: >-
+  There is no published paid/self-serve tier - the API is free for
+  non-commercial projects and commercial licensing is handled by contacting
+  setlist.fm directly. Verify current per-key rate limits and terms on the API
+  docs and terms pages during reconciliation.
+sources:
+- https://api.setlist.fm/docs/1.0/index.html
+- https://www.setlist.fm/help/terms
+- https://www.setlist.fm/settings/api
+plans:
+- id: setlistfm-non-commercial
+  name: Non-Commercial (Free API Key)
+  type: free
+  description: >-
+    Free, read-only access to the full setlist.fm REST API for non-commercial
+    projects. Requires a free API key. Subject to per-key rate limits.
+  entries:
+  - label: API Requests
+    name: api_requests
+    type: usage
+    metric: requests
+    limit: 1440
+    timeFrame: day
+    geo: global
+    unit: 1
+    price: free (non-commercial use only)
+    userMultiplied: false
+  elements:
+  - name: All REST Endpoints (Artists, Setlists, Venues, Cities, Countries, Search, User)
+  - name: JSON and XML Responses
+  - name: Localized Text (Accept-Language)
+  - name: Non-Commercial License Only
+- id: setlistfm-rate-limit-upgrade
+  name: Rate Limit Upgrade (Non-Commercial)
+  type: free
+  description: >-
+    Higher per-key rate limits granted on request for non-commercial projects
+    that demonstrate need. Reviewed manually by setlist.fm; approval can take
+    time. Still non-commercial.
+  entries:
+  - label: Upgraded API Requests
+    name: upgraded_requests
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: day
+    geo: global
+    unit: 1
+    price: free (granted on manual review)
+    userMultiplied: false
+  elements:
+  - name: Increased Requests per Second and per Day
+  - name: Manual Review and Approval
+- id: setlistfm-commercial
+  name: Commercial License
+  type: enterprise
+  description: >-
+    Commercial use of the setlist.fm API and data is not covered by the free
+    key and must be arranged directly with setlist.fm. Terms, permitted use,
+    and any fees are negotiated case by case.
+  entries:
+  - label: Commercial Agreement
+    name: commercial
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact setlist.fm
+    userMultiplied: false
+  elements:
+  - name: Negotiated Commercial Terms
+  - name: Direct Contact with setlist.fm
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

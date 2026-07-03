@@ -1,0 +1,60 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: setlist.fm
+providerId: setlistfm
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Music
+- Concerts
+- Setlists
+- Rate Limiting
+- Quotas
+description: >-
+  The setlist.fm REST API is rate limited per API key. Standard keys are
+  commonly issued with a limit of 2 requests per second and 1,440 requests per
+  day; setlist.fm can grant higher ceilings (values around 16 requests/second
+  and up to 50,000 requests/day have been reported for upgraded keys) on
+  manual request. The interactive documentation does not print a fixed numeric
+  limit, so the exact ceiling depends on the individual key. Exceeding the
+  limit returns HTTP 429 (Too Many Requests). Clients should throttle to the
+  documented per-second budget and back off on 429 responses.
+notes: >-
+  Numeric limits vary per key and are not printed in the Swagger docs; the
+  2 req/sec + 1,440/day figure is the widely reported standard-key default and
+  upgrades are handled manually via the API settings page. Verify the ceiling
+  for a specific key and re-confirm during reconciliation.
+sources:
+- https://api.setlist.fm/docs/1.0/index.html
+- https://www.setlist.fm/forum/setlistfm/setlistfm-api
+- https://www.setlist.fm/settings/api
+responseCodes:
+  throttled: 429
+limits:
+- name: Requests per Second
+  scope: api-key
+  metric: requests
+  limit: 2 per second (standard key; higher on request)
+  notes: Standard-key default; upgraded keys have been reported around 16 req/sec.
+- name: Requests per Day
+  scope: api-key
+  metric: requests
+  limit: 1440 per day (standard key; up to ~50000 on upgraded keys)
+  notes: Daily quota tied to the individual API key.
+- name: Rate Limit Upgrade
+  scope: api-key
+  metric: requests
+  limit: manual approval
+  notes: Higher limits requested through the API settings page and reviewed manually.
+policies:
+- name: Throttle to Budget
+  description: Keep sustained request rate within the per-second budget for your key (2 req/sec on standard keys) to avoid 429 responses.
+- name: Backoff on 429
+  description: On HTTP 429 (rate limit exceeded), pause and retry with exponential backoff rather than hammering the endpoint.
+- name: Cache Results
+  description: setlist data changes slowly; cache responses client-side to stay within the daily quota.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

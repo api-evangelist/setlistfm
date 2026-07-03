@@ -1,0 +1,82 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: setlist.fm
+providerId: setlistfm
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Music
+- Concerts
+- Setlists
+- Non-Commercial
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of setlist.fm API spend. The setlist.fm REST API carries no usage
+  fee: it is free for non-commercial use behind a free API key, so there is no
+  vendor invoice to manage. The real "cost" is operational - staying within the
+  per-key rate limits (commonly 2 req/sec and 1,440 requests/day) so an
+  application is not throttled with HTTP 429, and caching responses to reduce
+  call volume. Commercial use is not covered by the free key and would move
+  spend into a negotiated licensing agreement arranged directly with setlist.fm
+  (owned by Live Nation Entertainment / Ticketmaster).
+notes: >-
+  No metered billing exists for the free non-commercial key; the constraint is
+  the request quota, not dollars. Any commercial licensing cost is negotiated
+  off-list. Verify terms on the setlist.fm docs and terms pages.
+sources:
+- https://api.setlist.fm/docs/1.0/index.html
+- https://www.setlist.fm/help/terms
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: setlist.fm
+serviceCategory: Music and Entertainment Data
+billingModel:
+  pricingCategory: Free
+  billingFrequency: None
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+focusColumns:
+  ServiceName: setlist.fm REST API
+  ServiceCategory: Music and Entertainment Data
+  ProviderName: setlist.fm
+  PublisherName: setlist.fm
+  InvoiceIssuerName: setlist.fm
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Free
+meters:
+- name: api_requests
+  description: REST API calls made against the per-key rate limit (no monetary charge on the free non-commercial key).
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - api_key
+  - endpoint
+- name: daily_quota_consumption
+  description: Share of the daily request quota consumed by an API key.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - api_key
+principles:
+- name: Visibility
+  description: Track requests-per-second and daily request counts per API key against the key's rate limit to see how close you are to throttling.
+- name: Allocation
+  description: Use separate API keys per application or workload so quota consumption maps to the right owner.
+- name: Optimization
+  description: Cache slow-changing setlist, artist, and venue data client-side and batch discovery through search to minimize calls and stay under the daily quota.
+- name: Accountability
+  description: Assign an owner per API key; if a project needs commercial use or higher volume, escalate to a licensing/upgrade request with setlist.fm rather than exceeding terms.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
