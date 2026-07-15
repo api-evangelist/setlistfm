@@ -186,6 +186,8 @@ apis:
     have marked as attended or the setlists they have edited. Surfaces the
     crowd-sourced contributions that keep the setlist.fm database current.
 common:
+- type: AgenticAccess
+  url: agentic-access/setlistfm-agentic-access.yml
 - type: DomainSecurity
   url: security/setlistfm-domain-security.yml
 - type: Authentication
