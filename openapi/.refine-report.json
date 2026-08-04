@@ -1,0 +1,26 @@
+{
+  "provider": "setlistfm",
+  "sources": [
+    "setlistfm-artists-api-openapi.yml",
+    "setlistfm-cities-api-openapi.yml",
+    "setlistfm-countries-api-openapi.yml",
+    "setlistfm-search-api-openapi.yml",
+    "setlistfm-setlists-api-openapi.yml",
+    "setlistfm-user-api-openapi.yml",
+    "setlistfm-venues-api-openapi.yml"
+  ],
+  "outputs": [
+    "setlistfm-artists-api-openapi.yml",
+    "setlistfm-cities-api-openapi.yml",
+    "setlistfm-countries-api-openapi.yml",
+    "setlistfm-search-api-openapi.yml",
+    "setlistfm-setlists-api-openapi.yml",
+    "setlistfm-user-api-openapi.yml",
+    "setlistfm-venues-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
